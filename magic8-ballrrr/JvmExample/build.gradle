@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'stream.techygrrrl'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.techygrrrl:Magic8Ballrrr:0.1.2'
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": "stream.techygrrrl.Main",
+                "Class-Path": configurations.runtimeClasspath.files.collect { it.toURI().toString() }.join(' ')
+        )
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
